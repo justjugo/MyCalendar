@@ -1,0 +1,73 @@
+{% load static %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en">
+
+  
+<!-- Mirrored from buybootstrap.com/demos/medflex/medflex-admin-dashboard/signup.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 28 Jun 2024 07:48:04 GMT -->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap Gallery - Medical Admin Templates & Dashboards</title>
+
+    <!-- Meta -->
+    <meta name="description" content="Marketplace for Bootstrap Admin Dashboards">
+    <meta property="og:title" content="Admin Templates - Dashboard Templates">
+    <meta property="og:description" content="Marketplace for Bootstrap Admin Dashboards">
+    <meta property="og:type" content="Website">
+   <link rel="shortcut icon" href="{% static "account/assets/images/favicon.svg" %}">
+
+    <!-- *************
+			************ CSS Files *************
+		************* -->
+    <link rel="stylesheet" href="{% static "account/assets/fonts/remix/remixicon.css" %}">
+    <link rel="stylesheet" href="{% static "account/assets/css/main.min.css" %}">
+
+
+  </head>
+
+  <body class="login-bg">
+
+    <!-- Container starts -->
+    <div class="container" ">
+
+      <!-- Auth wrapper starts -->
+      <div class="auth-wrapper" >
+
+        <!-- Form starts -->
+        <form method="post" >
+           
+          <div class="auth-box" >
+            <a href="index.html" class="auth-logo mb-4">
+              <img src="{% static "account/assets/images/logo-dark.svg" %}" alt="Bootstrap Gallery">
+            </a>
+
+            <h4 class="mb-4">Signup</h4>
+
+            
+
+           
+
+           {{form|crispy}}
+
+            <div class="mb-3 d-grid gap-2">
+              <button type="submit" class="btn btn-primary">Signup</button>
+              <a href="{% url 'login' %}" class="btn btn-secondary">Already have an account? Login</a>
+            </div>
+
+          </div>
+
+        </form>
+        <!-- Form ends -->
+
+      </div>
+      <!-- Auth wrapper ends -->
+
+    </div>
+    <!-- Container ends -->
+
+  </body>
+
+
+<!-- Mirrored from buybootstrap.com/demos/medflex/medflex-admin-dashboard/signup.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 28 Jun 2024 07:48:04 GMT -->
+</html>
