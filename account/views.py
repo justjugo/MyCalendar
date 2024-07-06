@@ -1,10 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth import login ,authenticate
 from .forms import RegistrationForm
-# Create your views here.
 
-def login(request):
-    return render(request,'login.html',{})
 
 
 def signup(request):

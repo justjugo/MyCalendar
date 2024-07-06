@@ -8,6 +8,7 @@ from MyCalendar import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('account.urls')),
+    path('', include('dashboard.urls')),
     path('',include('django.contrib.auth.urls'))
 ]
 

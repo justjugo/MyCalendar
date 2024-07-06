@@ -1,0 +1,11 @@
+{% extends "../base.html" %}
+
+{% block core %}
+<h1>this is the stuuf dashboard</h1>
+{{user}}
+
+<h1>Appointments :</h1>
+{% for appontment in Appointment  %}
+  {{appontment.client_first_name}}
+{% endfor %}
+{% endblock  %}
