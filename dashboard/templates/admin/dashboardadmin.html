@@ -1,11 +1,237 @@
 {% extends "../base.html" %}
 
+{% block where1 %}
+  Home
+{% endblock  %}
+
+{% block active %} active  current-page{% endblock  %}
+
 {% block core %}
-<h1>this is the Admin dashboard</h1>
+
+<div class="app-body">
+
+  <!-- Row starts -->
+  <div class="row">
+    <div class="col-12 mt-4">
+
+      <!-- Row starts -->
+      <div class="row gx-3">
+        <div class="col-xxl-8 col-sm-12">
+          <div class="card mb-3 bg-4">
+            <div class="card-body mh-230">
+
+              <!-- Row starts -->
+              <div class="row gx-3">
+                <div class="col-sm-9">
+                  <div >
+                    <h6>Good Morning,</h6>
+                    <h3>Mm. {{user.nick_name}}</h3>
+                    <h6>Admin</h6>
+                    <h5>You have total <span class="badge bg-success">{{Appointment.count}} appointments</span> today.</h5>
+                    <a href="book-appointment.html" class="btn btn-danger mt-3">
+                      Book an Appointment
+
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <!-- Row ends -->
+
+            </div>
+          </div>
+        </div>
+       
+      </div>
+      <!-- Row ends -->
+
+    </div>
+  </div>
+  <!-- Row ends -->
+<!-- Row starts -->
+<div class="row gx-3">
+  <div class="col-xl-3 col-sm-6 col-12">
+    <div class="card mb-3">
+      <div class="card-body">
+        <div class="d-flex align-items-center">
+          <div class="p-2 border border-success rounded-circle me-3">
+            <div class="icon-box md bg-success-subtle rounded-5">
+              <i class="ri-surgical-mask-line fs-4 text-success"></i>
+            </div>
+          </div>
+          <div class="d-flex flex-column">
+            <h2 class="lh-1">{{Client.count}}</h2>
+            <p class="m-0">Clients</p>
+          </div>
+        </div>
+        <div class="d-flex align-items-end justify-content-between mt-1">
+          <a class="text-success" href="javascript:void(0);">
+            <span>View All</span>
+            <i class="ri-arrow-right-line text-success ms-1"></i>
+          </a>
+          <div class="text-end">
+           
+            <span class="badge bg-success-subtle text-success small">Today</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-3 col-sm-6 col-12">
+    <div class="card mb-3">
+      <div class="card-body">
+        <div class="d-flex align-items-center">
+          <div class="p-2 border border-primary rounded-circle me-3">
+            <div class="icon-box md bg-primary-subtle rounded-5">
+              <i class="ri-lungs-line fs-4 text-primary"></i>
+            </div>
+          </div>
+          <div class="d-flex flex-column">
+            <h2 class="lh-1">{{Appointment.count}}</h2>
+            <p class="m-0"> Appointments</p>
+          </div>
+        </div>
+        <div class="d-flex align-items-end justify-content-between mt-1">
+          <a class="text-primary" href="javascript:void(0);">
+            <span>View All</span>
+            <i class="ri-arrow-right-line ms-1"></i>
+          </a>
+          <div class="text-end">
+           
+            <span class="badge bg-primary-subtle text-primary small">Today</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-3 col-sm-6 col-12">
+    <div class="card mb-3">
+      <div class="card-body">
+        <div class="d-flex align-items-center">
+          <div class="p-2 border border-danger rounded-circle me-3">
+            <div class="icon-box md bg-danger-subtle rounded-5">
+              <i class="ri-microscope-line fs-4 text-danger"></i>
+            </div>
+          </div>
+          <div class="d-flex flex-column">
+            <h2 class="lh-1">{{ staff.count |add:emploies.count }}  </h2>
+            <p class="m-0">Emploies</p>
+          </div>
+        </div>
+        <div class="d-flex align-items-end justify-content-between mt-1">
+          <a class="text-danger" href="javascript:void(0);">
+            <span>View All</span>
+            <i class="ri-arrow-right-line ms-1"></i>
+          </a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-3 col-sm-6 col-12">
+    <div class="card mb-3">
+      <div class="card-body">
+        <div class="d-flex align-items-center">
+          <div class="p-2 border border-warning rounded-circle me-3">
+            <div class="icon-box md bg-warning-subtle rounded-5">
+              <i class="ri-money-dollar-circle-line fs-4 text-warning"></i>
+            </div>
+          </div>
+          <div class="d-flex flex-column">
+            <h2 class="lh-1">${{current_month_earnings}}</h2>
+            <p class="m-0">Total Earnings</p>
+          </div>
+        </div>
+        <div class="d-flex align-items-end justify-content-between mt-1">
+          <a class="text-warning" href="javascript:void(0);">
+            <span>View All</span>
+            <i class="ri-arrow-right-line ms-1"></i>
+          </a>
+          <div class="text-end">
+           
+            <span class="badge bg-warning-subtle text-warning small">this month</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Row ends -->
+ <br>
+<h2>Upcomming Appointments</h2>
+<br>
+  <!-- Row starts -->
+  <div class="row gx-3">
+    {% for app in Appointment  %}
+      
+    <div class="col-sm-4 col-12">
+      <div class="card mb-3">
+        <div class="card-body">
+         
+          <h5>{{app.client_first_name}}  {{app.client_last_name}} </h5>
+          <p class="small text-muted"><span style="color: green;">{{app.time|time:"H:i"}}</span> - <span style="color: purple;">{{app.service}}</span></p>
+          <p class="mb-4">
+            <h5>Phone number : {{app.phone_number}}</h5>
+            <h5>Employe : {{app.coiffeur}}</h5>
+          </p>
+          <!-- Blog footer starts -->
+          <div class="d-flex justify-content-between mt-4">
+            <a href="full-post.html" class="btn btn-success">   <i class="ri-checkbox-circle-line"></i> </a>
+            <a href="full-post.html" class="btn btn-danger"> <i class="ri-close-circle-line"></i></a>
+            <a href="full-post.html" class="btn btn-secondary"> <i class="ri-edit-box-line"></i></a>            
+          </div>
+          
+          <!-- Blog footer ends -->
+        </div>
+      </div>
+    </div>
+
+
+    {% endfor %}
+
+    
+  </div>
+  <!-- Row ends -->
+
+
+  <br>
+  <h2>Available  Emploies</h2>
+  <br>
+    <!-- Row starts -->
+    <div class="row gx-3">
+      {% for emp in emploies  %}
+        
+      <div class="col-sm-4 col-12">
+        <div class="card mb-3">
+          <div class="card-body">
+           
+            <h5>{{emp.first_name}}  {{emp.last_name}} </h5>
+            <p class="small text-muted"> {% for service in emp.specialties.all %}
+              {{ service.name }}
+          {% endfor %}</p>
+            <p class="mb-4">
+              <h5>Email: {{emp.email}}</h5>
+              <h5>Phone number : {{emp.phone_number}}</h5>
+            </p>
+            <!-- Blog footer starts -->
+            <div class="d-flex justify-content-between mt-4">
+              <a href="full-post.html" class="btn btn-primary">Edit</a>
+             
+            </div>
+            <!-- Blog footer ends -->
+          </div>
+        </div>
+      </div>
+  
+  
+      {% endfor %}
+  
+      
+    </div>
+    <!-- Row ends -->
+  
+</div>
 {{user}}
 
-<h1>Appointments :</h1>
-{% for appontment in Appointment  %}
-  {{appontment.client_first_name}}
-{% endfor %}
+
 {% endblock  %}
+

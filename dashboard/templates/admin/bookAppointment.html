@@ -1,0 +1,141 @@
+{% extends "base.html" %}
+{% block where1 %} Appointments {% endblock  %}
+
+{% block where2 %}Book Appointment {% endblock  %}
+
+
+{% block core %}
+
+   <!-- Row starts -->
+   <div class="row gx-3">
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="card-title">Book Appointment</h5>
+        </div>
+        <div class="card-body">
+
+          <!-- Row starts -->
+          <form action="{% url 'bookAppointment' %}" method="post">
+            {% csrf_token %}
+            <div class="row gx-3">
+                <div class="col-xxl-3 col-lg-4 col-sm-6">
+                    <div class="mb-3">
+                        <label class="form-label" for="a1">Client First Name</label>
+                        {{ form.client_first_name }}
+                        {% if form.client_first_name.errors %}
+                            <div class="text-danger">
+                                {% for error in form.client_first_name.errors %}
+                                    <p>{{ error }}</p>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="col-xxl-3 col-lg-4 col-sm-6">
+                    <div class="mb-3">
+                        <label class="form-label" for="a2">Client Last Name</label>
+                        {{ form.client_last_name }}
+                        {% if form.client_last_name.errors %}
+                            <div class="text-danger">
+                                {% for error in form.client_last_name.errors %}
+                                    <p>{{ error }}</p>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="col-xxl-3 col-lg-4 col-sm-6">
+                    <div class="mb-3">
+                        <label class="form-label" for="a5">Client Phone</label>
+                        {{ form.phone_number }}
+                        {% if form.phone_number.errors %}
+                            <div class="text-danger">
+                                {% for error in form.phone_number.errors %}
+                                    <p>{{ error }}</p>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="col-xxl-3 col-lg-4 col-sm-6">
+                    <div class="mb-3">
+                        <label class="form-label" for="a3">Service</label>
+                        {{ form.service }} 
+                        {% if form.service.errors %}
+                            <div class="text-danger">
+                                {% for error in form.service.errors %}
+                                    <p>{{ error }}</p>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="col-xxl-3 col-lg-4 col-sm-6">
+                    <div class="mb-3">
+                        <label class="form-label" for="a4">Coiffeur</label>
+                        {{ form.coiffeur }}
+                        {% if form.coiffeur.errors %}
+                            <div class="text-danger">
+                                {% for error in form.coiffeur.errors %}
+                                    <p>{{ error }}</p>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="col-xxl-3 col-lg-4 col-sm-6">
+                    <div class="mb-3">
+                        <label class="form-label" for="a6">Select Date</label>
+                        {{ form.date }}
+                        {% if form.date.errors %}
+                            <div class="text-danger">
+                                {% for error in form.date.errors %}
+                                    <p>{{ error }}</p>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="col-xxl-3 col-lg-4 col-sm-6">
+                    <div class="mb-3">
+                        <label class="form-label" for="a7">Select Time</label>
+                        {{ form.time }}
+                        {% if form.time.errors %}
+                            <div class="text-danger">
+                                {% for error in form.time.errors %}
+                                    <p>{{ error }}</p>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="col-xxl-3 col-lg-4 col-sm-6">
+                    <div class="mb-3">
+                        <label class="form-label" for="a8">Select Status</label>
+                        {{ form.status }}
+                        {% if form.status.errors %}
+                            <div class="text-danger">
+                                {% for error in form.status.errors %}
+                                    <p>{{ error }}</p>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <div class="d-flex gap-2 justify-content-end">
+                        <a href="appointments-list.html" class="btn btn-outline-secondary">Cancel</a>
+                        <button class="btn btn-primary">Book Appointment</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+          <!-- Row ends -->
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Row ends -->
+{% endblock  %}

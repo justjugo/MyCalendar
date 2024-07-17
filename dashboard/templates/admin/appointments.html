@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block where1 %} Appointments {% endblock  %}
+
+{% block where2 %} Appointment Calendar  {% endblock  %}
+
+{% block core %}
+   <!-- Row starts -->
+   <div class="row gx-3">
+    <div class="col-sm-12 col-12">
+      <div class="card">
+        <div class="card-header d-flex align-items-center justify-content-between">
+          <h5 class="card-title">Applointments</h5>
+          <a href="book-appointment.html" class="btn btn-primary ms-auto">Book Appointment</a>
+        </div>
+        <div class="card-body">
+
+          <div id="appointmentsCal"></div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Row ends --> 
+{% endblock  %}
