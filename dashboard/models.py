@@ -38,12 +38,12 @@ class Appointment(models.Model):
     client_last_name = models.CharField(max_length=30)
     phone_number = models.CharField(max_length=15 )
     coiffeur = models.ForeignKey(Coiffeur, on_delete=models.CASCADE)
-    service = models.ForeignKey(Service, on_delete=models.CASCADE)
+    service = models.ManyToManyField(Service, related_name='appointments') 
     date = models.DateField()
     time = models.TimeField()
     status = models.CharField(
         max_length=20,
-        choices=[('scheduled', 'Scheduled'), ('completed', 'Completed'), ('cancelled', 'Cancelled')]
+        choices=[('scheduled', 'Scheduled'), ('confirmed', 'Confirmed'), ('cancelled', 'Cancelled'), ('completed', 'Complited')]
     )
 
     class Meta:
@@ -51,6 +51,6 @@ class Appointment(models.Model):
 
     @classmethod
     def get_monthly_earnings(cls):
-        return cls.objects.filter(status='completed').annotate(month=TruncMonth('date')).values('month').annotate(total_earnings=Sum('service__price')).order_by('month')
+        return cls.objects.filter(status='Complited').annotate(month=TruncMonth('date')).values('month').annotate(total_earnings=Sum('service__price')).order_by('month')
 
 

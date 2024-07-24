@@ -4,6 +4,7 @@ from .models import Appointment
 from datetime import time, date
 from django.core.exceptions import ValidationError
 from django.db.models import Q
+import re
 
 class AppointmentForm(ModelForm):
     class Meta:
@@ -35,8 +36,8 @@ class AppointmentForm(ModelForm):
             'coiffeur': forms.Select(attrs={
                 'class': "form-select", 'id': "a3"
             }),
-            'service': forms.Select(attrs={
-                'class': "form-select", 'id': "a4"
+            'service': forms.SelectMultiple(attrs={
+                'class': " form-select", 'id': "a4"
             }),
             'date': forms.DateInput(attrs={
                 'type': "date", 'class': "form-control", 'id': "a6", 'placeholder': "Select date"
@@ -74,4 +75,25 @@ class AppointmentForm(ModelForm):
             raise ValidationError("La date du rendez-vous ne peut pas être antérieure à la date actuelle.")
 
         return appointment_date
+
+    def clean(self):
+        cleaned_data = super().clean()
+        appointment_date = cleaned_data.get('date')
+        appointment_time = cleaned_data.get('time')
+        coiffeur = cleaned_data.get('coiffeur')
+
+        if appointment_date and appointment_time and coiffeur:
+            if Appointment.objects.filter(Q(date=appointment_date) & Q(time=appointment_time) & Q(coiffeur=coiffeur)).exclude(id=self.instance.id).exists():
+                raise ValidationError("Le créneau horaire pour ce rendez-vous est déjà réservé pour ce coiffeur.")
+        
+        return cleaned_data
+    
+    def clean_phone_number(self):
+        phone_number = self.cleaned_data['phone_number']
+        pattern = re.compile(r'^(07|06|05)\d{8}$')  # Regex pour vérifier le format des numéros algériens
+        
+        if not pattern.match(str(phone_number)):
+            raise ValidationError("Le numéro de téléphone doit commencer par 07, 06 ou 05 et contenir 10 chiffres.")
+        
+        return phone_number
 

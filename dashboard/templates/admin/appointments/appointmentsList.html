@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+
+{% block where1 %} Appointments {% endblock  %}
+
+{% block where2 %} Appointments List {% endblock  %}
+
+{% block active1 %} active  current-page{% endblock  %}
+
+{% block core %}
+{% if succes %}
+<div class="alert bg-success text-white alert-dismissible fade show" role="alert">
+  The Appointment was added succesfuly !
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endif %}
+    <!-- Row starts -->
+    <div class="row gx-3">
+        <div class="col-sm-12">
+          <div class="card">
+            <div class="card-header d-flex align-items-center justify-content-between">
+              <h5 class="card-title">Applointments List</h5>
+              <a href="{% url 'bookAppointment' %}" class="btn btn-primary ms-auto">Book Appointment</a>
+            </div>
+            <div class="card-body">
+
+              <!-- Table starts -->
+              <div class="table-responsive">
+                <table id="appointmentsGrid" class="table m-0 align-middle">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>Client Name</th>
+                      <th>Phone number</th>
+                      <th> Service</th>
+                      <th>Coiffeur</th>
+                      <th>Date</th>
+                      <th>Time</th>
+                      <th>Status</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                   {% for app in appointments %}
+                   <tr>
+                    <td>{{app.id}}</td>
+                    <td>
+                      {{app.client_first_name}}
+                    </td>
+                    <td>{{app.phone_number}}</td>
+                    <td>
+                      {% for service in app.service.all  %}
+                        <li>{{service.name}}</li>
+                      {% endfor %}
+                    </td>
+                    <td>{{app.coiffeur}}</td>
+                    <td>{{app.date}}</td>
+                    <td>{{app.time|time:"H:i"}}</td>
+                    <td>{{app.status}}</td>
+                    
+                    <td>
+                      <div class="d-inline-flex gap-1">
+                       
+                        <a href="{% url 'deleteAppointment' app.id %}" class="btn btn-outline-danger btn-sm" data-bs-toggle="tooltip"
+                          data-bs-placement="top" data-bs-title="Reject" >
+                          <i class="ri-close-circle-line"></i>
+                      </a>
+                        <a href="{% url 'editAppointment' app.id %}" class="btn btn-outline-success btn-sm"
+                          data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Edit Appointment">
+                          <i class="ri-edit-box-line"></i>
+                        </a>
+                      </div>
+                    </td>
+                  </tr>
+                   {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+              <!-- Table ends -->
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Row ends -->
+{% endblock  %}

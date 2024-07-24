@@ -424,7 +424,7 @@
           <div class="sidebarMenuScroll">
             <ul class="sidebar-menu">
               <li class=" {% block active %}{% endblock  %}"> 
-                <a href="index.html">
+                <a href="{% url 'index' %}">
                   <i class="ri-home-6-line"></i>
                   <span class="menu-text">Dashboard</span>
                 </a>
@@ -440,7 +440,7 @@
                 <ul class="treeview-menu">
                   
                   <li class=" {% block active1 %}{% endblock  %}">
-                    <a href="{% url 'appointmentsList' %}">Appointment </a>
+                    <a href="{% url 'calandar' %}">Appointment </a>
                   </li>
                   <li>
                     <a href="{% url 'appointmentsList' %}"> Appointments List </a>
@@ -448,9 +448,7 @@
                   <li>
                     <a href="{% url 'bookAppointment' %}">Book Appointment </a>
                   </li>
-                  <li>
-                    <a href="doctors-cards.html">Employes available-time </a>
-                  </li>
+                  
                   
                 </ul>
               </li>

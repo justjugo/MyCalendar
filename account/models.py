@@ -42,6 +42,8 @@ class Account(AbstractBaseUser):
     email = models.EmailField(verbose_name="E-Mail", max_length=60, unique=True)
     nick_name = models.CharField(verbose_name="Nickname", max_length=20)
     profile_img = models.ImageField(upload_to=upload_location, null=True, blank=True)
+    phone_number = models.CharField(max_length=15,default="default")
+    address = models.TextField(default="default")
 
     # necessary
     date_joined = models.DateTimeField(verbose_name="date joined", auto_now_add=True)

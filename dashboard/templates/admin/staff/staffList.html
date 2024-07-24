@@ -1,10 +1,10 @@
 {% extends "base.html" %}
 
-{% block where1 %} Appointments {% endblock  %}
+{% block where1 %} Staff {% endblock  %}
 
-{% block where2 %} Appointments List {% endblock  %}
+{% block where2 %} Staff List  {% endblock  %}
 
-{% block active1 %} active  current-page{% endblock  %}
+
 
 {% block core %}
 {% if succes %}
@@ -19,7 +19,7 @@
           <div class="card">
             <div class="card-header d-flex align-items-center justify-content-between">
               <h5 class="card-title">Applointments List</h5>
-              <a href="book-appointment.html" class="btn btn-primary ms-auto">Book Appointment</a>
+              <a href="book-appointment.html" class="btn btn-primary ms-auto">Add Staff</a>
             </div>
             <div class="card-body">
 
@@ -28,45 +28,33 @@
                 <table id="appointmentsGrid" class="table m-0 align-middle">
                   <thead>
                     <tr>
-                      <th>#</th>
-                      <th>Client Name</th>
+                      
+                      <th>Name</th>
+                      <th>Email</th>
                       <th>Phone number</th>
-                      <th> Service</th>
-                      <th>Coiffeur</th>
-                      <th>Date</th>
-                      <th>Time</th>
-                      <th>Status</th>
-                      <th>Actions</th>
+                      <th>Adress</th>
+                      
                     </tr>
                   </thead>
                   <tbody>
-                   {% for app in appointments %}
+                   {% for staff in staff %}
                    <tr>
-                    <td>{{app.id}}</td>
+                    <td>{{staff.nick_name}}</td>
                     <td>
-                      {{app.client_first_name}}
+                      {{staff.email}}
                     </td>
-                    <td>{{app.phone_number}}</td>
-                    <td>
-                      {{app.service}}
-                    </td>
-                    <td>{{app.coiffeur}}</td>
-                    <td>{{app.date}}</td>
-                    <td>{{app.time|time:"H:i"}}</td>
-                    <td>{{app.status}}</td>
+                    <td>{{staff.phone_number}}</td>
+                    <td>{{staff.address}}</td>
                     
                     <td>
                       <div class="d-inline-flex gap-1">
-                        <button class="btn btn-success btn-sm" data-bs-toggle="tooltip" data-bs-placement="top"
-                          data-bs-title="Accepted">
-                          <i class="ri-checkbox-circle-line"></i>
-                        </button>
+                        
                         <button class="btn btn-outline-danger btn-sm" data-bs-toggle="tooltip"
-                          data-bs-placement="top" data-bs-title="Reject" disabled>
+                          data-bs-placement="top" data-bs-title="Delete" >
                           <i class="ri-close-circle-line"></i>
                         </button>
                         <a href="edit-appointment.html" class="btn btn-outline-success btn-sm"
-                          data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Edit Appointment">
+                          data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Edit Staff">
                           <i class="ri-edit-box-line"></i>
                         </a>
                       </div>
